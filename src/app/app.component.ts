@@ -8,17 +8,26 @@ import { Component } from '@angular/core';
 export class AppComponent {
   onUpdate = false;
   title = 'Sami Kerboute';
-  // courses = ['laravel', 'symfony', 'donet', 'windev', 'jee'];
   courses = [
-    { id: 1, title: "Laravel", active: true },
-    { id: 2, title: "Angular", active: true },
-    { id: 3, title: "Symfony", active: false },
-    { id: 4, title: "Vuejs", active: true }
+    { id: 1, title: "Laravel", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, amet.", active: true, is_favoris: false, price: 199, date: new Date(), votes: { like: 10, dislike: 0} },
+    { id: 2, title: "Angular", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, amet.", active: true, is_favoris: false, price: 142, date: new Date(), votes: { like: 0, dislike: 5} },
+    { id: 3, title: "Symfony", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, amet.", active: false, is_favoris: false, price: 22.3, date: new Date(), votes: { like: 3, dislike: 4} },
+    { id: 4, title: "Vuejs", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, amet.", active: true, is_favoris: false, price: 99, date: new Date(), votes: { like: 0, dislike: 0} }
   ];
+  
+
   currentCourse = {
     id: 0,
     title: "",
-    active: false
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, amet.",
+    active: false,
+    is_favoris: false,
+    price: 0,
+    date: new Date(),
+    votes: {
+      like: 0,
+      dislike: 0
+    }
   };
 
   addCourse() {
@@ -26,7 +35,15 @@ export class AppComponent {
     this.currentCourse = {
       id: 0,
       title: "",
-      active: false
+      description: "",
+      active: false,
+      is_favoris: false,
+      price: 0,
+      date: new Date(),
+      votes: {
+        like: 0,
+        dislike: 0
+      }
     };
   }
 
@@ -50,5 +67,18 @@ export class AppComponent {
   togglePower(course){
     course.active = !course.active;
   }
+  toggleFavoris(course){
+    course.is_favoris = !course.is_favoris;
+  }
+
+  updateVote(course, child){
+    if (child.status){
+      course.votes.like = child.value;
+    }
+    else {
+      course.votes.disLike = child.value;
+    }
+  }
+
 
 }

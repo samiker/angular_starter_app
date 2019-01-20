@@ -1,0 +1,18 @@
+<button (click)="disLikeUp()" class="btn btn-sm ml-2"  [ngClass]="
+{
+  'btn-danger' : disLike!=0
+}
+">
+  <i class="fa fa-thumbs-down"></i>
+  <span> {{ disLike }}</span>
+</button>
+
+<button (click)="likeUp()" class="btn btn-sm ml-2"  [ngClass]="
+{
+  'btn-info' : like!=0
+}
+">
+  <i class="fa fa-thumbs-o-up"></i>
+  <span> {{ like }}</span>
+</button>
+

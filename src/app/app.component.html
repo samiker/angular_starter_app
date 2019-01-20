@@ -27,8 +27,26 @@
     <i class="fa fa-power-off"></i>
 </button>
 
+<button (click)="toggleFavoris(course)" class="btn btn-sm ml-2">
+    <i class="fa"  [ngClass]="
+    {
+    'fa-star' : course.is_favoris,
+    'fa-star-o' : !course.is_favoris
+    }
+    "></i>
+</button>
 
-    {{ course.title }}
+<app-votes
+[like] = "course.votes.like"
+[disLike] = "course.votes.disLike"
+(changeVote) = "updateVote(course, $event)"
+>
+</app-votes>
+
+
+    {{ course.title }} , price :  {{ course.price | currency:'EUR' : 'code' : '3.3-3' }}, date : {{ course.date | date:'dd/MM/yyyy' }}
+
+    <p>{{ course.description | extrait:10 }}</p>
 
   <div class="text-right">
 
