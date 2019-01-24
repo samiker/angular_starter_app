@@ -15,7 +15,7 @@ import { CoursesComponent } from './courses/courses.component';
 
 
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 

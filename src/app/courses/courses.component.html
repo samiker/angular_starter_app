@@ -1,10 +1,10 @@
 <h1>{{ title }}</h1>
 
-<input class="form-control" [(ngModel)]="currentCourse.title" type="text" placeholder="New Course" (keyup.enter)="addCourse()">
+<input class="form-control mt-3 mb-3" [(ngModel)]="currentCourse.title" type="text" placeholder="New Course" (keyup.enter)="addCourse()">
 
-<button *ngIf="!onUpdate" class="btn btn-primary btn-block" (click)="addCourse()"> Add </button>
+<button *ngIf="!onUpdate" class="btn btn-primary btn-block mt-3 mb-3" (click)="addCourse()"> Add </button>
 
-<button *ngIf="onUpdate" class="btn btn-warning btn-block" (click)="updateCourse()"> Update </button>
+<button *ngIf="onUpdate" class="btn btn-warning btn-block mt-3 mb-3" (click)="updateCourse()"> Update </button>
 
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-courses',
@@ -60,12 +61,31 @@ export class CoursesComponent implements OnInit {
   }
 
   removeCourse(course) {
-    let r = confirm("Vous etes sur ?");
-    if (r == true) {
-      let index = this.courses.indexOf(course);
-      this.courses.splice(index, 1);
-    }
-  }
+    Swal({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        let index = this.courses.indexOf(course);
+        this.courses.splice(index, 1);
+        Swal(
+          'Deleted!',
+          'Your imaginary file has been deleted.',
+          'success'
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+}
 
   updateCourse(course){
     this.onUpdate = false;
