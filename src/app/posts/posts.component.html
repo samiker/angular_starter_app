@@ -1,21 +1,48 @@
 
 <div class="row">
   <div class="col-md-6 mx-auto">
-    <div class="form-group">
-      <label for="Title">Title </label>
-      <input id="Title" type="text" class="form-control" [(ngModel)]="newPost.title">
+
+    <form #f="ngForm">
+
+      <div class="form-group">
+        <label for="Title">Title </label>
+  
+        <input
+        [ngClass]="{
+          'is-invalid': title.touched && title.invalid,
+          'is-valid': title.touched && title.valid
+        }"
+        (change)="log(title)"
+        #title="ngModel"
+        maxlength="10" minlength="3" name="title" id="Title" required type="text" pattern="[a-zA-Z0-9]*" class="form-control"
+        [(ngModel)]="newPost.title">
+  
+        <div class="" *ngIf="title.invalid && title.touched">
+          <div class="" *ngIf="title.errors.required">
+            This field is Required !!
+        </div>
+        <div class="" *ngIf="title.errors.minlength">
+          This field is has great than 3 chars !!
+        </div>
+        <div class="" *ngIf="title.errors.pattern">
+          This field not respect the pattern !!
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="Body">Body </label>
-      <textarea name="Body" id="Body" cols="30" rows="2" class="form-control" [(ngModel)]="newPost.body"></textarea>
-    </div>
-    <button *ngIf="!edit" class="btn btn-primary btn-block" (click)="addPost()">
-        <i class="fa fa-plus"> Add post</i>
-    </button>
-    <button *ngIf="edit" class="btn btn-warning btn-block" (click)="updatePost()">
-          <i class="fa fa-pencil"> Update Post</i>
-    </button>
-{{ newPost | json }}
+      <div class="form-group">
+        <label for="Body">Body </label>
+        <textarea name="Body" id="Body" cols="30" rows="2" class="form-control" [(ngModel)]="newPost.body"></textarea>
+      </div>
+      <!-- [disabled]="f.invalid" -->
+      <button *ngIf="!edit" class="btn btn-primary btn-block" (click)="addPost(f)">
+          <i class="fa fa-plus"> Add post</i>
+      </button>
+      <button *ngIf="edit" class="btn btn-warning btn-block" (click)="updatePost()">
+            <i class="fa fa-pencil"> Update Post</i>
+      </button>
+  {{ newPost | json }}
+
+    </form>
 
   </div>
 </div>

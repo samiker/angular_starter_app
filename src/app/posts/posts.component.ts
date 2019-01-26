@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-posts',
@@ -26,15 +27,23 @@ export class PostsComponent implements OnInit {
     .subscribe((res: any[]) => { this.myPosts = res });
   }
 
-  addPost() {
-    this.postService.createPost(this.newPost)
-        .subscribe(res => {
-          this.myPosts.unshift(this.newPost)
-          this.newPost = {
-            title: "",
-            body: ""
-          }
-        });
+  addPost(f) {
+    if (f.valid){
+      this.postService.createPost(this.newPost)
+      .subscribe(res => {
+        this.myPosts.unshift(this.newPost)
+        this.newPost = {
+          title: "",
+          body: ""
+        }
+      });
+    }else{
+      Swal({
+        title: 'Form Error',
+        text: 'please check your form',
+        type: 'warning'
+      })
+    }
   }
 
   editPost(post){
@@ -67,6 +76,8 @@ export class PostsComponent implements OnInit {
       )
   }
 
-
+  log(title){
+    console.log(title);
+  }
 
 }
